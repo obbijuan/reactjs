@@ -4,14 +4,7 @@ import { GifGrid } from './components/GifGrid'
 
 export const GifExpertApp = () => {
 
-    const [Categories, setCategories] = useState(['The Matrix'])
-    
-    // const handleAdd = () => { 
-    //     setCategories([
-    //         ...Categories,
-    //         'Episodio IV: Una nueva esperanza'
-    //     ])
-    // }
+    const [Categories, setCategories] = useState(['Mandalorian'])
 
     return (
         <>
