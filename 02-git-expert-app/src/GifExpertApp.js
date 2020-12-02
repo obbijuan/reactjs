@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { CategoryAdd } from './components/CategoryAdd'
 import { GifGrid } from './components/GifGrid'
 
-export const GifExpertApp = () => {
+export const GifExpertApp = ({ defaultCategories = [] }) => {
 
-    const [Categories, setCategories] = useState(['Mandalorian'])
+    const [Categories, setCategories] = useState(defaultCategories)
 
     return (
         <>
