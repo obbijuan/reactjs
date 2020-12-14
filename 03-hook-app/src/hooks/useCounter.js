@@ -1,34 +1,33 @@
 // El objectivo de un custom hooks es la reutilizacion.
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export const useCounter = (initialState = 0) => {
-
-    const [state, setState] = useState(initialState)
-    const [position, setPosition] = useState(initialState)
+export const useCounter = ( ArrMovies ) => {
     
-    const increment = () => {
-        setState( state + 1 )
-    }
-    const decrement = () => {
-        setState( state - 1 )
-    }
-    const reset = () => {
-        setState( initialState )
-    }
+    const [listMovies] = useState(ArrMovies);
+    const [position, setPosition] = useState(0);
+    const [idMovie, setIdMovie] = useState('');
+    
+    useEffect(() => {
+        setIdMovie(listMovies[position]);
+        // eslint-disable-next-line
+    }, [position])
 
-    const random = (arrIds) => {
-        state < (arrIds.length - 1) ? increment() : reset()
-        let randomItem = arrIds[state];
-        setPosition(randomItem)
+    function increment() {
+        setPosition(position + 1);
+    }
+    
+    function reset(){
+        setPosition(0);
+    }
+    
+    const next = () => {
+        position < (listMovies.length - 1) ? increment() : reset()
+        setIdMovie(listMovies[position]);
     }
 
     return {
-        state,
-        increment,
-        decrement,
-        reset,
-        position,
-        random
+        idMovie,
+        next
     }
 
 }
