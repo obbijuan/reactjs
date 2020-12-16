@@ -1,10 +1,10 @@
 // El objectivo de un custom hooks es la reutilizacion.
 import { useState, useEffect } from 'react'
 
-export const useCounter = ( ArrMovies ) => {
+export const useCounter = ( ArrMovies=[], state ) => {
     
     const [listMovies] = useState(ArrMovies);
-    const [position, setPosition] = useState(0);
+    const [position, setPosition] = useState(state);
     const [idMovie, setIdMovie] = useState('');
     
     useEffect(() => {
