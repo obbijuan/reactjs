@@ -27,6 +27,8 @@ export const useCounter = ( ArrMovies ) => {
 
     return {
         idMovie,
+        position,
+        increment,
         next
     }
 
