@@ -15,15 +15,46 @@ export const TodoApp = () => {
 
     return (
         <div>
-            <h1>TodoApp</h1>
+            <h1>TodoApp ({ todos.length })</h1>
             <hr />
 
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
-            
+            <div className="row">
+
+                <div className="col-7">
+                    <ul className="list-group list-group-flush">
+                        {
+                            todos.map((todo, i) => (
+                                <li
+                                    key={todo.id}
+                                    className="list-group-item">
+                                    <p className="text-center">{i + 1}. {todo.desc}</p>
+                                    <button className="btn btn-danger">
+                                        Borrar
+                                    </button>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+                <div className="col-5">
+                    <h4>Agregar TODO</h4>
+                    <hr />
+                    
+                    <form>
+                        <input
+                            type="text"
+                            name="description"
+                            className="form-control"
+                            autoComplete="off"
+                        />
+                        <button
+                            className="btn btn-primary mt-1 btn-block"
+                        >
+                            Agregar
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
