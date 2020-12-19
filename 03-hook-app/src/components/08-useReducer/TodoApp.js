@@ -17,9 +17,19 @@ export const TodoApp = () => {
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
-        
-    // Si la dependencia cambia, significa que tiene que volver a guardar en el local storage
-    }, [todos]) 
+
+        // Si la dependencia cambia, significa que tiene que volver a guardar en el local storage
+    }, [todos]);
+
+    const handleDelete = (todoId) => {
+
+        const action = {
+            type: 'remove',
+            payload: todoId 
+        }
+        dispatch(action);
+
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,7 +69,10 @@ export const TodoApp = () => {
                                     key={todo.id}
                                     className="list-group-item">
                                     <p className="text-center">{i + 1}. {todo.desc}</p>
-                                    <button className="btn btn-danger">
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick ={ ()=> handleDelete(todo.id) }
+                                    >
                                         Borrar
                                     </button>
                                 </li>
