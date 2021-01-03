@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en MultipleCustomHooks debe mostrarse correctamente 1`] = `
+<div>
+  <h1>
+    OMDb API
+  </h1>
+  <hr />
+  <button
+    className="btn btn-primary mb-3"
+    onClick={[Function]}
+  >
+    Siguiente
+  </button>
+  <blockquote
+    className="blockquote text-left"
+  >
+    <p
+      className="mb-0"
+    >
+       - (
+      )
+    </p>
+    <p
+      className="mb-3 h6"
+    />
+    <img
+      className="mb-3"
+      width="250px"
+    />
+    <footer
+      className="blockquote-footer"
+    />
+  </blockquote>
+</div>
+`;
