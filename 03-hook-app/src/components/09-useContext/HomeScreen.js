@@ -4,7 +4,6 @@ import { UserContext } from './UserContext'
 export const HomeScreen = () => {
 
     const { user } = useContext(UserContext)
-    console.log( user )
 
     return (
         <div>
