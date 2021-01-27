@@ -5,12 +5,13 @@ import { types } from '../types/types';
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
 
-        // Se simula una peticion asincrona de 3.5 seg.
-        setTimeout(() => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(({ user }) => {
+                dispatch(login( user.uid, user.displayName))
+            }).catch(e => {
+                console.log(e)
+            })
             
-            dispatch(login(email, password))
-
-        }, 3500);
     }
 }
 
