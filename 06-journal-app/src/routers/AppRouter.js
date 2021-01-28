@@ -39,7 +39,7 @@ export const AppRouter = () => {
     if (checking) {
         // Se puede reemplazar por una animacion de loading
         return (
-            <h1>Espere...</h1>
+            <h1>Please Wait...</h1>
         )
     }
 
