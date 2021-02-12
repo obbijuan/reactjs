@@ -7,7 +7,8 @@ import DateTimePicker from 'react-datetime-picker';
 import Swal from 'sweetalert2';
 
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew } from '../../actions/events';
+import { eventAddNew, eventClearActiveEvent } from '../../actions/events';
+import { useEffect } from 'react';
 
 const customStyles = {
     content : {
@@ -36,6 +37,7 @@ export const CalendarModal = () => {
     // Con useSelector queda pendiente del store o de algo y se extrae con desestructuración el modalOpen.
     // El state.ui se puede ver en las redux tools, opcion 'State'.
     const { modalOpen } = useSelector(state => state.ui)
+    const { activeEvent } = useSelector(state => state.calendar)
 
     const dispatch = useDispatch();
 
@@ -47,6 +49,15 @@ export const CalendarModal = () => {
 
     const { notes, title, start, end } = formValues;
 
+    useEffect(() => {
+
+        if (activeEvent) {
+            setFormValues(activeEvent)
+        }
+    
+    }, [activeEvent, setFormValues])
+
+
     const handleInputChange = ({ target }) => {
         setFormValues({
             ...formValues,
@@ -56,6 +67,8 @@ export const CalendarModal = () => {
 
     const closeModal = () => {
         dispatch( uiCloseModal() )
+        dispatch( eventClearActiveEvent() )
+        setFormValues( initEvent )
     }
 
     const handleStartDateChange = (e) => {
