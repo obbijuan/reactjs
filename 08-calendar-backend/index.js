@@ -7,6 +7,9 @@ const app = express();
 // Directorio Publico
 app.use(express.static('public'));
 
+//Lectura y parseo del body (se deja de usar bodyparse)
+app.use(express.json());
+
 app.use('/api/auth', require('./routes/auth'));
 
 
