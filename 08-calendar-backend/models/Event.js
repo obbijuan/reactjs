@@ -25,4 +25,12 @@ const EventSchema = Schema({
 
 });
 
+
+// Se personaliza la serializacion del metodo toJSON que se devuelve
+EventSchema.method('toJSON', function () {
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object
+})
+
 module.exports = model('Event', EventSchema);
