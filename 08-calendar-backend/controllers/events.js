@@ -34,10 +34,13 @@ const createEvent = async(req, res = response) => {
 
 }
 
-const updatetEvent = (req, res = response) => {
+const updateEvent = (req, res = response) => {
+
+
+
     res.json({
         ok: true,
-        msg: 'updatetEvent'
+        msg: 'updateEvent'
     })
 }
 
@@ -51,6 +54,6 @@ const deleteEvent = (req, res = response) => {
 module.exports = {
     getEvents,
     createEvent,
-    updatetEvent,
+    updateEvent,
     deleteEvent
 }
