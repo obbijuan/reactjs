@@ -1,7 +1,32 @@
 import { types } from "../types/types";
+import { fetchWithToken } from "../helpers/fetch";
 
+export const eventStartAddNew = (event) => {
+    return async(dispatch, getState) => {
+        
+        const { uid, name } = getState().auth;
+        
+        try {
+            const resp = await fetchWithToken('events', event, 'POST');
+            const body = await resp.json();
+            
+            if (body.ok) {
+                event.id = body.event.id;
+                event.user = {
+                    _id: uid,
+                    name: name
+                }
+                dispatch(eventAddNew( event ));
+            }
 
-export const eventAddNew = (event) => ({
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+const eventAddNew = (event) => ({
     type: types.eventAddNew,
     payload: event
 });
