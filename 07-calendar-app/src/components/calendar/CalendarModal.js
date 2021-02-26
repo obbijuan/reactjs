@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import moment from 'moment';
@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 
 import { uiCloseModal } from '../../actions/ui';
 import { eventClearActiveEvent, eventStartAddNew, eventUpdated } from '../../actions/events';
-import { useEffect } from 'react';
 
 const customStyles = {
     content : {
