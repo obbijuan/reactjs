@@ -52,6 +52,8 @@ export const CalendarModal = () => {
 
         if (activeEvent) {
             setFormValues(activeEvent);
+            setDateStart(activeEvent.start);
+            setDateEnd(activeEvent.end);
         } else {
             setFormValues(initEvent);
         }
@@ -136,7 +138,8 @@ export const CalendarModal = () => {
                         onChange={handleStartDateChange}
                         value={dateStart}
                         className="form-control"
-                    />
+                        format="dd/MM/yyyy HH:00"
+                        />
                 </div>
 
                 <div className="form-group">
@@ -146,6 +149,7 @@ export const CalendarModal = () => {
                         value={dateEnd}
                         minDate={dateStart}
                         className="form-control"
+                        format="dd/MM/yyyy HH:00"
                     />
                 </div>
 
