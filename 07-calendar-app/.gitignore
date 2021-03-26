@@ -16,7 +16,7 @@
 .env.production
 .env.development
 .env.local
-.env.test.local
+.env.test
 
 # cache
 .eslintcache
