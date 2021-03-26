@@ -1,4 +1,4 @@
-import { fetchWithoutToken } from '../../helpers/fetch';
+import { fetchWithoutToken, fetchWithToken } from '../../helpers/fetch';
 
 
 
@@ -16,6 +16,21 @@ describe('Pruebas en el helper Fetch', () => {
         expect( body.ok ).toBe( true );
 
         token = body.token;
+        
+    })
+
+
+    test('fetchConToken debe de funcionar', async() => {
+
+        // Valida que se graba el token en el localStorage
+        localStorage.setItem('token', token );
+
+        // Valida que se esta usando el fetchWithToken
+        const resp = await fetchWithToken('events/5ee25d21c25cce32af01a3f3', {}, 'DELETE');
+        const body = await resp.json();
+
+        expect( body.msg ).toBe('Evento no existe con ese Id');
+
         
     })
     
