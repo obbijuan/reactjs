@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 import '@testing-library/jest-dom';
 
-import { startLogin, startRegister } from '../../actions/auth';
+import { startChecking, startLogin, startRegister } from '../../actions/auth';
 import { types } from '../../types/types';
 import * as fetchModule from '../../helpers/fetch';
 
@@ -55,6 +55,7 @@ describe('Pruebas en las acciones Auth', () => {
         expect( localStorage.setItem ).toHaveBeenCalledWith('token', expect.any(String));
         expect( localStorage.setItem ).toHaveBeenCalledWith('token-init-date', expect.any(Number) );
 
+        token = localStorage.setItem.mock.calls[0][1];
         // console.log(localStorage.setItem.mock.calls[0][1])
         
     });
@@ -108,6 +109,38 @@ describe('Pruebas en las acciones Auth', () => {
 
         
     });
+
+
+    test('startChecking correcto', async() => {
+
+        fetchModule.fetchWithToken = jest.fn(() => ({
+            json() {
+                return {
+                    ok: true,
+                    uid: '123',
+                    name: 'obbijuan',
+                    token: 'abcd12345efgh6789'
+                }
+            }
+        }));
+
+
+        await store.dispatch( startChecking() );
+
+        const actions = store.getActions();
+        
+        expect( actions[0] ).toEqual({
+            type: types.authLogin,
+            payload: {
+                uid: '123',
+                name: 'obbijuan'
+            }
+        });
+
+        expect( localStorage.setItem ).toHaveBeenCalledWith('token', 'abcd12345efgh6789' );
+
+        
+    })
 
 
     
